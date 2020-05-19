@@ -4,7 +4,7 @@ int main()
     int x, y, n, m;
     cin >> n;       //Number of nodes
     cin >> m;       //Number of edges
-		vector<int> gp[n];
+	vector<int> gp[n];
     for(int i = 0;i < m;++i)
     {
         cin >> x >> y;
@@ -43,20 +43,24 @@ int main()
 }
 
 /// DFS 
-bool visited[100001];		//size of nodes = 100001 and t the order in which nodes are traveresed
-void dfs(int s,vector<int>& t)
+		//size of nodes = 100001 and t the order in which nodes are traveresed
+bool visited[1000000];
+vector<int> gp[1000000];
+void dfs(int s,vector<int> & t)
 {
     if(visited[s])
         return;
     visited[s]=true;
     t.push_back(s);
     fr(i,0,gp[s].size())
-    	dfs(gp[s][i],t);
+        dfs(gp[s][i],t);
 }
 int main()
 {
     lli n,m,x;
     cin>>n>>m;
+    for(int i=0;i<n+1;++i)
+        gp[i].clear();
     lli a,b;
     for(int i=0;i<n+1;++i)
         visited[i]=false;
