@@ -1,0 +1,104 @@
+///Dijakta Algorithm template 
+//Courtesy - @vedang122
+
+vector < pair < int , int > > gp [100001];   // each vertex has all the connected vertices with the edges weights
+int dist [100001];
+bool visited [100001];
+
+void dijkstra(int src)
+{
+    // set the vertices distances as infinity
+    memset(visited, false , sizeof visited);            // set all vertex as unvisited
+    dist[src] = 0;
+    multiset < pair < int , int > > s;          // multiset do the job as a min-priority queue
+    s.insert({0 , src});                          // insert the source node with distance = 0
+    while(!s.empty())
+    {
+        pair <int , int> p = *s.begin();        // pop the vertex with the minimum distance
+        s.erase(s.begin());
+        int x = p.Sc;
+        int wei = p.Fs;
+        if( visited[x] )
+            continue;                  // check if the popped vertex is visited before
+        visited[x] = true;
+        for(int i = 0; i < gp[x].size(); i++)
+        {
+            int e = gp[x][i].Fs;
+            int w = gp[x][i].Sc;
+            if(dist[x] + w < dist[e]  )
+            {            // check if the next vertex distance could be minimized
+                dist[e] = dist[x] + w;
+                s.insert({dist[e],  e} );           // insert the next vertex with the updated distance
+            }
+        }
+    }
+}
+int main()
+{
+    lli n,m,x;
+    cin>>n>>m;
+    for(int i=0;i<n+1;++i)
+    {
+        gp[i].clear();
+        dist[i] = 2e9;
+    }
+    lli a,b,wt;
+    fr(i,0,m)
+    {
+        cin>>a>>b>>wt;
+        gp[a].pb({b,wt});
+        gp[b].pb({a,wt});
+    }
+    cin>>x;
+    dijkstra(x);
+    return 0;
+}
+
+
+
+
+
+int dist[1000000];
+vector<pair<int,int>> gp[1000000];
+
+int main()
+{
+    lli n,m,x;
+    cin>>n>>m;
+    for(int i=0;i<n+1;++i)
+    {
+        gp[i].clear();
+        dist[i] = 2e9;
+    }
+    lli a,b,wt;
+    fr(i,0,m)
+    {
+        cin>>a>>b>>wt;
+        gp[a].pb({b,wt});
+        gp[b].pb(a);
+    }
+    cin>>x;
+    vector<int> t;
+    dfs(x,t);
+    return 0;
+
+   for(int i = 0; i < m; i++){
+
+        scanf("%d%d%d", &from , &next , &weight);
+
+        v[i].push_back(from);
+        v[i].push_back(next);
+        v[i].push_back(weight);
+   }
+
+    dis[0] = 0;
+    for(int i = 0; i < n - 1; i++){
+        int j = 0;
+        while(v[j].size() != 0){
+
+            if(dis[ v[j][0]  ] + v[j][2] < dis[ v[j][1] ] ){
+                dis[ v[j][1] ] = dis[ v[j][0]  ] + v[j][2];
+            }
+            j++;
+        }
+    }
