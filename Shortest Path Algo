@@ -56,49 +56,42 @@ int main()
 
 
 
-
-
-int dist[1000000];
-vector<pair<int,int>> gp[1000000];
+/// Bellman Ford ALgo - Used for negative cycles 
+vector <int> edges [1000001];
+int dist [100000];
 
 int main()
 {
     lli n,m,x;
     cin>>n>>m;
-    for(int i=0;i<n+1;++i)
+    for(int i = 0; i < m + 1; i++)
     {
-        gp[i].clear();
+        edges[i].clear();
         dist[i] = 2e9;
     }
-    lli a,b,wt;
-    fr(i,0,m)
-    {
-        cin>>a>>b>>wt;
-        gp[a].pb({b,wt});
-        gp[b].pb(a);
-    }
-    cin>>x;
-    vector<int> t;
-    dfs(x,t);
-    return 0;
-
-   for(int i = 0; i < m; i++){
-
+    int from,next,weight;
+    for(int i = 0; i < m; i++){
+        
         scanf("%d%d%d", &from , &next , &weight);
-
-        v[i].push_back(from);
-        v[i].push_back(next);
-        v[i].push_back(weight);
-   }
-
-    dis[0] = 0;
-    for(int i = 0; i < n - 1; i++){
+        edges[i].push_back(from);
+        edges[i].push_back(next);
+        edges[i].push_back(weight);
+    }
+    int src=1;
+    dist[src] = 0;
+    for(int i = 1; i < n; i++)
+    {
         int j = 0;
-        while(v[j].size() != 0){
-
-            if(dis[ v[j][0]  ] + v[j][2] < dis[ v[j][1] ] ){
-                dis[ v[j][1] ] = dis[ v[j][0]  ] + v[j][2];
+        while(edges[j].size() != 0)
+        {
+            if(dist[ edges[j][0]  ] + edges[j][2] < dist[ edges[j][1] ] )
+            {
+                dist[ edges[j][1] ] = dist[ edges[j][0]  ] + edges[j][2];
             }
             j++;
         }
     }
+    
+    
+    return 0;
+}
