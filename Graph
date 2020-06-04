@@ -78,6 +78,9 @@ int main()
 
 \\\ BFS traversal
 dist gives distance of every node from the given node
+
+bool visited[1000000];
+vector<int> gp[1000000];
 int main()
 {
     lli n,a,b,x;
