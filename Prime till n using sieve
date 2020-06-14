@@ -1,3 +1,4 @@
+// Time Complexity - O(n)
 vector<lli> SieveOfEratosthenes(lli n) 
 {  
     bool prime[n+1]; 
