@@ -96,7 +96,7 @@ int main()
     // The above step guarantees shortest distances
     // if graph doesn't contain negative weight cycle.
     // If we get a shorter path, then there
-    // is a cycle.
+    // is a cycle. ans=true when there is a negative cycle 
     for (int i = 0; i < m; i++)
     {
         int u = edges[i][0];
