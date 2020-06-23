@@ -140,7 +140,8 @@ void bellman()
 int main()
 {
     cin>>n>>m;
-    for(int i=0;i<n+1;++i)
+    //nodes are assumed to 1,2..n
+    for(int i=1;i<n+1;++i)
     {
         gp[i].clear();
     }
