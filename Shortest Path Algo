@@ -121,7 +121,7 @@ void bellman()
 {
     // set the vertices distances as infinity
     mem(dist,2e9);
-    fr(i,0,n)
+    fr(i,1,n+1)
     {
         dist[i][i]=0;
         for(auto j :gp[i])
