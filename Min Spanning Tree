@@ -94,7 +94,7 @@ lli prim(lli x)
 int main()
 {
     cin>>n>>m;
-    fr(i,0,n)
+    fr(i,0,n+1)
     {
         gp[i].clear();
     }
