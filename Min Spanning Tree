@@ -1,0 +1,111 @@
+//Min Spanning Tree bt @vedang122
+//Krushal Algorithm 
+
+
+lli id[100001];
+pair <lli,pl > p[100001];
+lli n,m,x,y;
+lli root(lli x)
+{
+    while(id[x] != x)
+    {
+        id[x] = id[id[x]];
+        x = id[x];
+    }
+    return x;
+}
+
+void union1(lli x, lli y)
+{
+    lli p = root(x);
+    lli q = root(y);
+    id[p] = id[q];
+}
+lli kruskal()
+{
+    lli x, y;
+    lli  cost, minimumCost = 0;
+    for(int i = 0;i < m;++i)
+    {
+        // Selecting edges one by one in increasing order from the beginning
+        x = p[i].second.first;
+        y = p[i].second.second;
+        cost = p[i].first;
+        // Check if the selected edge is creating a cycle or not
+        if(root(x) != root(y))
+        {
+            minimumCost += cost;
+            union1(x, y);
+        }
+    }
+    return minimumCost;
+}
+int main()
+{
+    cin>>n>>m;
+    for(int i=0;i<n+1;++i)
+    {
+        id[i]=i;
+    }
+    lli a,b,wt;
+    fr(i,0,m)
+    {
+        cin>>a>>b>>wt;
+        p[i]={wt,{a,b}};
+    }
+    sort(p,p+m);
+    lli ans= kruskal();
+    cout << ans << endl;
+    return 0;
+}
+
+//// Prim's Algorithm 
+// take Max used to max of n and m ;
+bool marked[100001];
+vector <pl> gp[100001];
+lli n,m,x,y;
+lli prim(lli x)
+{
+    priority_queue<pl, vector<pl>, greater<pl> > q;
+    lli y;
+    lli minimumCost = 0;
+    pl p;
+    q.push(make_pair(0, x));
+    while(!q.empty())
+    {
+        // Select the edge with minimum weight
+        p = q.top();
+        q.pop();
+        x = p.second;
+        // Checking for cycle
+        if(marked[x] == true)
+            continue;
+        minimumCost += p.first;
+        marked[x] = true;
+        for(int i = 0;i < gp[x].size();++i)
+        {
+            y = gp[x][i].second;
+            if(marked[y] == false)
+                q.push(gp[x][i]);
+        }
+    }
+    return minimumCost;
+}
+int main()
+{
+    cin>>n>>m;
+    fr(i,0,n)
+    {
+        gp[i].clear();
+    }
+    lli a,b,wt;
+    fr(i,0,m)
+    {
+        cin>>a>>b>>wt;
+        gp[a].pb({wt,b});
+        gp[b].pb({wt,a});
+    }
+    lli ans= prim(1);
+    cout << ans << endl;
+    return 0;
+}
