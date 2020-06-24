@@ -9,8 +9,6 @@ lli n,m,x,y;
 void dijkstra(int src)
 {
     // set the vertices distances as infinity
-    memset(visited, false , sizeof visited);            // set all vertex as unvisited
-    mem(dist,2e9);
     dist[src] = 0;
     multiset < pair < int , int > > s;          // multiset do the job as a min-priority queue
     s.insert({0 , src});                          // insert the source node with distance = 0
@@ -41,6 +39,8 @@ int main()
     for(int i=0;i<n+1;++i)
     {
         gp[i].clear();
+        visited[i]=false;
+        dist[i]=2e9;
     }
     lli a,b,wt;
     fr(i,0,m)
