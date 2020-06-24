@@ -3,6 +3,7 @@
 
 
 lli id[100001];
+lli ra[100001];
 pair <lli,pl > p[100001];
 lli n,m,x,y;
 lli root(lli x)
@@ -19,7 +20,15 @@ void union1(lli x, lli y)
 {
     lli p = root(x);
     lli q = root(y);
-    id[p] = id[q];
+    if(p!=q)
+    {
+        id[p] = id[q];
+        if (ra[p] < ra[q])
+            swap(p, q);
+        id[q] = p;
+        if (ra[p] == ra[q])
+            ra[p]++;
+    }
 }
 lli kruskal()
 {
@@ -46,6 +55,7 @@ int main()
     for(int i=0;i<n+1;++i)
     {
         id[i]=i;
+        ra[i]=0;
     }
     lli a,b,wt;
     fr(i,0,m)
