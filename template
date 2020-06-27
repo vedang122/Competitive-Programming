@@ -87,6 +87,7 @@ void show(unordered_map<lli,lli> mp)
 }
 int main()
 {
+    run;
     lli n,t;
     cin>>t;
     while(t)
