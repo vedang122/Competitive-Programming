@@ -20,16 +20,24 @@
 #include <chrono>
 #include <random>
 using namespace std;
+using namespace std::chrono;
 #define fr(i,j,n)   for(lli i=j;i<(n);++i)
 #define bk(i,j,n)   for(lli i=j;i>=n;--i)
 #define pb push_back
-#define mp make_pair
+#define m_p make_pair
 #define Fs first
 #define Sc second
 #define endl "\n"
 #define MOD 1000000007
+#define present(c,x)    ((c).find(x) != (c).end())
 #define run ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
-#define ordered_set tree<ll , null_type, less<ll>, rb_tree_tag, tree_order_statistics_node_update>
+#define ordered_set tree<lli, null_type,less<lli>, rb_tree_tag,tree_order_statistics_node_update>
+#define debug1(x) cout<<#x<<" "<<x<<endl;
+#define debug2(x,y) cout<<#x<<" "<<x<<" "<<#y<<" "<<y<<endl;
+#define debug3(x,y,z) cout<<#x<<" "<<x<<" "<<#y<<" "<<y<<" "<<#z<<" "<<z<<endl;
+#define mem(p,v) memset(p,(lli)v,sizeof p);
+#define ub upper_bound
+#define lb lower_bound
 typedef long long int lli;
 typedef vector<int> vi;
 typedef pair<int,int> pi;
@@ -67,8 +75,9 @@ void show(unordered_set<int> s)
     {
         cout << *it << " ";
     }
+    cout<<endl;
 }
-void show(unordered_map<int,int> mp)
+void show(unordered_map<lli,lli> mp)
 {
     for (auto it = mp.begin(); it != mp.end(); it++)
     {
@@ -78,7 +87,6 @@ void show(unordered_map<int,int> mp)
 }
 int main()
 {
-    
     lli n,t;
     cin>>t;
     while(t)
