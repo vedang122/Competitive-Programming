@@ -45,6 +45,12 @@ typedef vector<lli> vl;
 typedef pair<lli,lli> pl;
 inline lli max(lli a,lli b){ return a>b?a:b;}
 inline lli min(lli a,lli b){ return a<b?a:b;}
+inline lli max(vl a){return *max_element(a.begin(),a.end());}
+inline lli min(vl a){return *min_element(a.begin(),a.end());}
+inline lli min(lli a[],lli n){return *min_element(a,a+n);}
+inline lli max(lli a[],lli n){return *max_element(a,a+n);}
+inline lli sum(lli a[],lli n){return accumulate(a, a+n,0);}
+inline lli sum(vl a){return accumulate(a.begin(), a.end(),0);}
 void show(vector<lli> v)
 {
     fr(i,0,v.size())
@@ -69,7 +75,7 @@ void show(lli a[], lli arraysize)
         cout << a[i] << " ";
     cout<<endl;
 }
-void show(unordered_set<int> s)
+void show(set<lli> s)
 {
     for (auto it = s.begin(); it != s.end(); it++)
     {
@@ -77,7 +83,7 @@ void show(unordered_set<int> s)
     }
     cout<<endl;
 }
-void show(unordered_map<lli,lli> mp)
+void show(map<lli,lli> mp)
 {
     for (auto it = mp.begin(); it != mp.end(); it++)
     {
@@ -85,6 +91,8 @@ void show(unordered_map<lli,lli> mp)
     }
     cout<<endl;
 }
+/// Main code starts here 
+
 int main()
 {
     run;
