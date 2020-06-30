@@ -1,0 +1,23 @@
+            
+No No No Yes Yes Yes type question we need to find first yes ( I f function given increasing always use BS)
+						
+bool check(lli ans)
+{
+}
+lli l=1,h=LONG_LONG_MAX;
+while(l<h)
+{
+    lli  m=l+(h-l)/2;
+    if(check(m))
+    {
+        h=m;
+    }
+    else
+    {
+        l=m+1;
+    }
+}
+if(check(l))
+cout<<l<<endl;
+else
+cout<<l+1<<endl;
