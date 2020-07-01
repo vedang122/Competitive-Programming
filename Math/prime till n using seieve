@@ -14,7 +14,7 @@ vector<lli> SieveOfEratosthenes(lli n)
         } 
     } 
   
-    // Print all prime numbers 
+    // return all prime numbers 
     vl v;
     for (int p=2; p<=n; p++) 
        if (prime[p]) 
