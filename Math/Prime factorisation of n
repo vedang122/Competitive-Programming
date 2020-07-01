@@ -1,0 +1,45 @@
+Time Complexity is O(sqrt(n))
+
+bool isprime[1000001];
+vl prime;
+void SieveOfEratosthenes(lli n)
+{
+    
+    fr(i,0,n+1)
+    {
+        isprime[i]=true;
+    }
+    isprime[0]=isprime[1]=false;
+    
+    for (lli p=2; p*p<=n; p++)
+    {
+        // If prime[p] is not changed, then it is a prime
+        if (isprime[p] == true)
+        {
+            for (lli i=p*p; i<=n; i += p)
+                isprime[i] = false;
+        }
+    }
+    
+    // return all prime numbers
+    for (lli p=2; p<=n; p++)
+        if (isprime[p])
+            prime.pb(p);
+}
+vector<lli> prime_factor(lli n)
+{
+    vector<lli> factorization;
+    for (lli d : prime)
+    {
+        if (d * d > n)
+            break;
+        while (n % d == 0)
+        {
+            factorization.push_back(d);
+            n /= d;
+        }
+    }
+    if (n > 1)
+        factorization.push_back(n);
+    return factorization;
+}
