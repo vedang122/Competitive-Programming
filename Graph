@@ -44,8 +44,8 @@ int main()
 
 /// DFS 
 		//size of nodes = 100001 and t the order in which nodes are traveresed
-bool visited[1000000];
-vector<int> gp[1000000];
+bool visited[1000001];
+vector<int> gp[1000001];
 void dfs(int s,vector<int> & t)
 {
     if(visited[s])
