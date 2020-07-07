@@ -1,0 +1,27 @@
+lli fac[1000001];
+void factorial()
+{
+    fac[0] = 1;
+    for (lli i = 1; i < 1000001; i++)
+        fac[i] = (fac[i - 1]%MOD * (i%MOD)) % MOD;
+}
+
+lli nCrModPFermat(lli n,lli r)
+{
+    // Base case
+    lli res = fac[n];
+    lli div = fac[n-r] * fac[r];
+    div %= MOD;
+    div = modpow(div, MOD - 2);
+    return (res * div) % MOD;
+}
+
+int main()
+{
+    run;
+    lli a,b;
+    cin>>a>>b;
+    factorial();
+    cout<<nCrModPFermat(a, b)<<endl;
+    return 0;
+}
