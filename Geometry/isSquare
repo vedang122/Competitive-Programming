@@ -1,0 +1,30 @@
+lli distSq(pl p, pl q)
+{
+    return (p.Fs - q.Fs) * (p.Fs - q.Fs) + (p.Sc - q.Sc) * (p.Sc - q.Sc);
+}
+bool util(pl p1,pl p2,pl p3,pl p4)
+{
+    lli d2 = distSq(p1, p2); // from p1 to p2
+    lli d3 = distSq(p1, p3); // from p1 to p3
+    lli d4 = distSq(p1, p4); // from p1 to p4
+    
+    if (d2 == 0 || d3 == 0 || d4 == 0)
+        return false;
+    
+    if (d2 == d3 && 2 * d2 == d4
+        && 2 * distSq(p2, p4) == distSq(p2, p3)) {
+        return true;
+    }
+    
+    // The below two cases are similar to above case
+    if (d3 == d4 && 2 * d3 == d2
+        && 2 * distSq(p3, p2) == distSq(p3, p4)) {
+        return true;
+    }
+    if (d2 == d4 && 2 * d2 == d3
+        && 2 * distSq(p2, p3) == distSq(p2, p4)) {
+        return true;
+    }
+    
+    return false;
+}
