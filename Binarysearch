@@ -21,3 +21,23 @@ if(check(l))
 cout<<l<<endl;
 else
 cout<<l+1<<endl;
+
+
+//// Binary search for double values --
+
+const float target = 0.0000001;
+//value to find
+int main()
+{
+    double l=0.00000000,r=100000.00000000;
+    int iterations = 0;
+	while(iterations < 300)
+	{
+        double mid = (float)((l+r)/2);
+        if(mid>target) 
+			r=mid;
+        else 
+			l=mid;
+    }
+	cout << l;
+}
