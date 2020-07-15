@@ -38,6 +38,7 @@ int main()
 			r=mid;
         else 
 			l=mid;
+		iterations++;
     }
 	cout << l;
 }
