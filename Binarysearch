@@ -1,5 +1,7 @@
-            
-No No No Yes Yes Yes type question we need to find first yes ( I f function given increasing always use BS)
+ [l,r] implementation following--  So choose lower and upper bound respectively       
+//No No No Yes Yes Yes type question 
+
+//1. we need to find first yes ( I f function given increasing always use BS) Tip - use proper lower and upper bounds
 						
 bool check(lli ans)
 {
@@ -17,10 +19,85 @@ while(l<h)
         l=m+1;
     }
 }
-if(check(l))
-cout<<l<<endl;
+if(!check(l))
+cout<<"All are false"<<endl;
 else
-cout<<l+1<<endl;
+cout<<l<<endl;
+
+//2. we need to find first no ( If function given monotonicity always use BS) Tip - use proper lower and upper bounds
+						
+bool check(lli ans)
+{
+}
+lli l=1,h=LONG_LONG_MAX;
+while(l<h)
+{
+    lli  m=l+(h-l)/2;
+    if(check(m))
+    {
+        h=m-1;
+    }
+    else
+    {
+        l=m;
+    }
+}
+if(!check(l))
+cout<<"All are true"<<endl;
+else
+cout<<l<<endl;
+
+
+//Yes Yes Yes No No Notype question 
+
+//1. we need to find last yes . Tip - use proper lower and upper bounds( case to find max which satisfy)
+						
+bool check(lli ans)
+{
+}
+lli l=1,h=LONG_LONG_MAX;
+while(l<h)
+{
+    lli  m=l+(h-l)/2;
+    if(check(m))
+    {
+        l=m;
+    }
+    else
+    {
+        h=m-1;
+    }
+}
+if(!check(l))
+cout<<"All are false"<<endl;
+else
+cout<<l<<endl;
+
+//2. we need to find first no ( If function given monotonicity always use BS) Tip - use proper lower and upper bounds
+						
+bool check(lli ans)
+{
+}
+lli l=1,h=LONG_LONG_MAX;
+while(l<h)
+{
+    lli  m=l+(h-l)/2;
+    if(check(m))
+    {
+        l=m+1;
+    }
+    else
+    {
+        h=m;
+    }
+}
+if(!check(l))
+cout<<"All are true"<<endl;
+else
+cout<<l<<endl;
+
+
+
 
 
 //// Binary search for double values --
