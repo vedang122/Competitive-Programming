@@ -52,8 +52,10 @@ void dfs(int s,vector<int> & t)
         return;
     visited[s]=true;
     t.push_back(s);
-    fr(i,0,gp[s].size())
-        dfs(gp[s][i],t);
+    for(auto i:gp[s])
+    {
+        dfs(i,t);
+    }
 }
 int main()
 {
