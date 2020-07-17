@@ -95,7 +95,6 @@ int main()
         gp[b].pb(a);
     }
     cin>>x;
-    bool visited[n+1];
     fr(i,0,n+1)
     	visited[i]=false;
     int dist[n+1];
@@ -108,13 +107,13 @@ int main()
     {
         u=q.front();
         q.pop();
-        for(int i=0;i<gp[u].size();++i)
+        for(auto i:gp[u])
         {
-            if(visited[gp[u][i]])
+            if(visited[i])
                 continue;
-            visited[gp[u][i]]=true;
-            dist[gp[u][i]]=dist[u]+1;
-            q.push(gp[u][i]);
+            visited[i]=true;
+            dist[i]=dist[u]+1;
+            q.push(i);
         }
     }
     return 0;
