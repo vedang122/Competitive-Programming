@@ -1,6 +1,6 @@
 
 Dfs traversal for topological sort ---- (will print any one of the order)
-For printing lexiographically lower order uncomment two commented line and comment for loop for all dfs.
+For printing lexiographically lower order uncomment two commented line and comment for loop for all dfs(https://stackoverflow.com/questions/27034954/topological-sort-with-smallest-available-vertex-first).
 
 int color[1000001];
 vector<int> gp[1000001];
