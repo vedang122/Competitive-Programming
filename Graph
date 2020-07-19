@@ -46,15 +46,14 @@ int main()
 		//size of nodes = 100001 and t the order in which nodes are traveresed
 bool visited[1000001];
 vector<int> gp[1000001];
-void dfs(int s,vector<int> & t)
+void dfs(int s)
 {
     if(visited[s])
         return;
     visited[s]=true;
-    t.push_back(s);
     for(auto i:gp[s])
     {
-        dfs(i,t);
+        dfs(i);
     }
 }
 int main()
@@ -81,8 +80,8 @@ int main()
 \\\ BFS traversal
 dist gives distance of every node from the given node
 
-bool visited[1000000];
-vector<int> gp[1000000];
+bool visited[1000001];
+vector<int> gp[1000001];
 int main()
 {
     lli n,a,b,x;
