@@ -57,4 +57,144 @@ int main()
     return 0;
 }
 
+////// BFS approach to print topological sort according to lexiographical order--
+vector<int> gp[1000001];
+vector<lli>  top;
+bool topsort(int n)
+{
+    vi in_deg(n+1,0); //basically count of all incoming edges to vertices
+    top.clear();
+    //change this according to type of indexing --
+    for(int i=1;i<=n;++i)
+    {
+        for(auto j : gp[i])
+        {
+            in_deg[j]++;
+        }
+    }
+    set<lli> q;
+    for(lli i=1;i<=n;++i)
+    {
+        if(!in_deg[i])
+        {
+            q.insert(i);
+        }
+    }
+    while(!q.empty())
+    {
+        int u=*q.begin();
+        q.erase(q.begin());
+        top.pb(u);
+        for(auto i:gp[u])
+        {
+            in_deg[i]--;
+            if(!in_deg[i])
+            {
+                q.insert(i);
+            }
+        }
+    }
+    //note we don't have to reverse(as in dfs approach) it since queue is used
+    return (top.size()==n);
+}
+int main()
+{
+    run;cout<<fixed<<setprecision(12);
+    lli n,m,ans,t,ind=1;
+    cin>>t;
+    while(t)
+    {
+        cin>>n>>m;
+        for(int i=0;i<n+1;++i)
+        {
+            gp[i].clear();
+        }
+        lli a,b;
+        fr(i,0,m)
+        {
+            cin>>a>>b;
+            gp[a].pb(b);
+        }
+        if(topsort(n))
+        {
+            show(top);
+        }
+        else
+            cout<<-1<<endl;
+        t--;
+    }
+    return 0;
+}
+
+
+////// BFS approach to print any topological sort --
+vector<int> gp[1000001];
+vector<lli>  top;
+bool topsort(int n)
+{
+    vi in_deg(n+1,0); //basically count of all incoming edges to vertices
+    top.clear();
+    //change this according to type of indexing --
+    for(int i=1;i<=n;++i)
+    {
+        for(auto j : gp[i])
+        {
+            in_deg[j]++;
+        }
+    }
+    queue<lli> q;
+    for(lli i=1;i<=n;++i)
+    {
+        if(!in_deg[i])
+        {
+            q.push(i);
+        }
+    }
+    while(!q.empty())
+    {
+        int u=q.front();
+        q.pop();
+        top.pb(u);
+        for(auto i:gp[u])
+        {
+            in_deg[i]--;
+            if(!in_deg[i])
+            {
+                q.push(i);
+            }
+        }
+    }
+    //note we don't have to reverse(as in dfs approach) it since queue is used
+    return (top.size()==n);
+}
+
+int main()
+{
+    run;cout<<fixed<<setprecision(12);
+    lli n,m,ans,t,ind=1;
+    cin>>t;
+    while(t)
+    {
+        cin>>n>>m;
+        for(int i=0;i<n+1;++i)
+        {
+            gp[i].clear();
+        }
+        lli a,b;
+        fr(i,0,m)
+        {
+            cin>>a>>b;
+            gp[a].pb(b);
+        }
+        if(topsort(n))
+        {
+            show(top);
+        }
+        else
+            cout<<-1<<endl;
+        t--;
+    }
+    return 0;
+}
+
 
