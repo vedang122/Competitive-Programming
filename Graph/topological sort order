@@ -40,6 +40,7 @@ int main()
     }
     //fr(i,1,n+1){ sort(gp[i].rbegin(), gp[i].rend());}
     top.clear();
+    iscyclic=false;
     //bk(i,n,1){if(color[i]==0)dfs(i);}
     fr(i,1,n+1)
     {
