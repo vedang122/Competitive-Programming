@@ -73,7 +73,7 @@ int main()
     }
     cin>>x;
     vector<int> t;
-    dfs(x,t);
+    dfs(x);
     return 0;
 }
 
