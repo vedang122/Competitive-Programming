@@ -51,7 +51,7 @@ int main()
 
 Time Complexity is O(sqrt(n))
 #define MAXN 1000001
-bool isprime[1000001];
+bool isprime[MAXN];
 vl prime;
 void SieveOfEratosthenes()
 {
@@ -62,7 +62,7 @@ void SieveOfEratosthenes()
     }
     isprime[0]=isprime[1]=false;
     
-    for (lli p=2; p*p<=MAXN; p++)
+    for (lli p=2; p*p<=MAXN-1; p++)
     {
         // If prime[p] is not changed, then it is a prime
         if (isprime[p] == true)
@@ -73,7 +73,7 @@ void SieveOfEratosthenes()
     }
     
     // return all prime numbers
-    for (lli p=2; p<=MAXN; p++)
+    for (lli p=2; p<MAXN; p++)
         if (isprime[p])
             prime.pb(p);
 }
