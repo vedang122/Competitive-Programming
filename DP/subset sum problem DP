@@ -1,4 +1,4 @@
-Given a set we have to find whether a subset of it has sum equal to given sum. We define dp[i][j] to be dp state such that if set {a[0],a[1],a[2].. a[i]} have sum equal to j. At position i we have two choices whether if a[i] is included in sum or not. This provised the transisition.
+Given a set we have to find whether a subset of it has sum equal to given sum. We define dp[i][j] to be dp state such that if set {a[0],a[1],a[2].. a[i]} have sum equal to j. At position i we have two choices whether if a[i] is included in sum or not. This provised the transisition for states.
 
 bool dp[n+1][sum+1];
 fr(i,0,n+1)
