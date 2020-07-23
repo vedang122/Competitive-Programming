@@ -86,7 +86,6 @@ int main()
 {
     lli n,a,b,x;
     cin>>n;
-    vector<int> gp[n+1];
     fr(i,0,n-1)
     {
         cin>>a>>b;
