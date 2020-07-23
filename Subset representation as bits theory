@@ -1,0 +1,55 @@
+//Reciepe by bmerry at Topcode --
+Consider a subset of the set {0, 1, ..., N - 1}. This can be represented by an N-bit binary number, where bit i (representing 2i) is 1 if element i is present, and 0 if element i is absent. Most modern languages support integers of up to 64 bits, allowing subsets of 64-element sets to be encoded (some languages also allow for arbitrary numbers of bits). In code examples, it is assumed that a 32-bit integer is being used.
+
+Many set operations can be achieved by bitwise and integer arithmetic:
+
+Set union:
+A | B
+
+Set intersection:
+A & B
+
+Set subtraction:
+A & ~B
+
+Test if set is non-empty:
+A != 0
+
+Test whether element x is in A:
+(A & (1 << x)) != 0
+
+The set containing {0, ..., x - 1}:
+(1 << x) - 1
+
+Put x in A (works even if x is already in A):
+A |= 1 << x;
+
+Remove x from A (works even if x is not in A):
+A &= ~(1 << x);
+
+Set negation:
+((1 << N) - 1) & ~A
+
+Test whether A has exactly one element:
+(A > 0) && (A & (A - 1)) == 0
+
+Remove the smallest element from A:
+A = A & (A - 1)
+
+Remove all but the smallest element from A:
+A = A & ~(A - 1)
+
+Count the number of elements in A:
+// GCC:
+count = __builtin_popcount(A);
+
+
+Get the index of the smallest element in A:
+// GCC:
+low = __builtin_ctz(A);
+
+Get the index of the smallest element in A:
+// GCC:
+high = __builtin_clz(A);
+
+
