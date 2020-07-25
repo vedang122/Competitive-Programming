@@ -1,5 +1,6 @@
 // Time Complexity - O(n)
-lli Maxn=1000001;
+
+#define Maxn 1000001
 bool isprime[Maxn];
 vl prime;
 void SieveOfEratosthenes()
