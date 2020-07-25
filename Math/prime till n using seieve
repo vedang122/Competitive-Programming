@@ -1,27 +1,28 @@
 // Time Complexity - O(n)
-bool isprime[1000001];
+lli Maxn=1000001;
+bool isprime[Maxn];
 vl prime;
-void SieveOfEratosthenes(lli n)
+void SieveOfEratosthenes()
 {
     
-    fr(i,0,n+1)
+    fr(i,0,Maxn)
     {
         isprime[i]=true;
     }
     isprime[0]=isprime[1]=false;
         
-    for (lli p=2; p*p<=n; p++)
+    for (lli p=2; p*p<=Maxn; p++)
     {
         // If prime[p] is not changed, then it is a prime
         if (isprime[p] == true)
         {
-            for (lli i=p*p; i<=n; i += p)
+            for (lli i=p*p; i<Maxn; i += p)
                 isprime[i] = false;
         }
     }
     
     // return all prime numbers
-    for (lli p=2; p<=n; p++)
+    for (lli p=2; p<Maxn; p++)
         if (isprime[p])
             prime.pb(p);
 }
