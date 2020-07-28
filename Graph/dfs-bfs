@@ -82,25 +82,14 @@ dist gives distance of every node from the given node
 
 bool visited[1000001];
 vector<int> gp[1000001];
-int main()
+int dist[1000001];
+void bfs(int s)
 {
-    lli n,a,b,x;
-    cin>>n;
-    fr(i,0,n-1)
-    {
-        cin>>a>>b;
-        gp[a].pb(b);
-        gp[b].pb(a);
-    }
-    cin>>x;
-    fr(i,0,n+1)
-    	visited[i]=false;
-    int dist[n+1];
     queue<int> q;
     int u;
-    dist[1]=0;
-    visited[1]=true;
-    q.push(1);
+    dist[s]=0;
+    visited[s]=true;
+    q.push(s);
     while(!q.empty())
     {
         u=q.front();
@@ -114,6 +103,22 @@ int main()
             q.push(i);
         }
     }
+
+}
+int main()
+{
+    lli n,a,b,x;
+    cin>>n;
+    fr(i,0,n-1)
+    {
+        cin>>a>>b;
+        gp[a].pb(b);
+        gp[b].pb(a);
+    }
+    cin>>x;
+    fr(i,0,n+1)
+    	visited[i]=false;
+    bfs(s);
     return 0;
 }
 
