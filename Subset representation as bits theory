@@ -44,11 +44,11 @@ Count the number of elements in A:
 count = __builtin_popcount(A);
 
 
-Get the index of the smallest element in A:
+Get the index of the LSB in A:
 // GCC:
 low = __builtin_ctz(A);
 
-Get the index of the smallest element in A:
+Get the position of MSB in A:
 // GCC:
 high = __builtin_clz(A);
 
