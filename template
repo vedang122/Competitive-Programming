@@ -19,6 +19,7 @@
 #include<vector>
 #include <chrono>
 #include <random>
+#include <bitset>
 using namespace std;
 using namespace std::chrono;
 #define fr(i,j,n)   for(lli i=j;i<(n);++i)
@@ -68,25 +69,9 @@ void show(bool a[], lli arraysize){for (lli i = 0; i < arraysize; ++i)cout << a[
 void show(set<int> s){for (auto it = s.begin(); it != s.end(); it++){cout << *it << " ";}cout<<endl;}
 void show(map<lli,lli> mp){for (auto it = mp.begin(); it != mp.end(); it++){cout << it->first << " "<<it->second<<endl;}cout<<endl;}
 bool comp(pair<lli,lli> p1,pair<lli,lli> p2){return p1.Fs>p2.Fs;}
-lli modpow(lli x,lli n){
-    lli res=1;
-    while(n>0){
-        if(n&1) res=((res%MOD)*(x%MOD))%MOD;
-        x=((x%MOD)*(x%MOD))%MOD;
-        n>>=1;
-    }
-    return res;
-}
-lli power(lli x, lli n)
-{
-    lli res=1;
-    while(n>0){
-        if(n&1) res=res*x;
-        x=x*x;
-        n>>=1;
-    }
-    return res;
-}
+
+lli modpow(lli x,lli n){lli res=1;while(n>0){if(n&1) res=((res%MOD)*(x%MOD))%MOD;x=((x%MOD)*(x%MOD))%MOD;n>>=1;}return res;}
+lli power(lli x, lli n){lli res=1;while(n>0){if(n&1) res=res*x;x=x*x;n>>=1;}return res;}
 /////// ------ Main code starts here ------ /////
 int main()
 {
