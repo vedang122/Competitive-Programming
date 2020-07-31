@@ -1,62 +1,4 @@
 
-Dfs traversal for topological sort ---- (will print any one of the order)
-For printing lexiographically lower order uncomment two commented line and comment for loop for all dfs(https://stackoverflow.com/questions/27034954/topological-sort-with-smallest-available-vertex-first).
-
-int color[1000001];
-vector<int> gp[1000001];
-vector<int>  top;
-bool iscyclic=false;
-void dfs(int s)
-{
-    if(color[s]!=0)
-    {
-        if(color[s]==1)
-            iscyclic=true;
-        return;
-    }
-    color[s]=1;
-    for(int i:gp[s])
-    {
-        dfs(i);
-    }
-    color[s]=2;
-    top.push_back(s);
-}
-int main()
-{
-    run;cout<<fixed<<setprecision(12);
-    lli n,m,x;
-    cin>>n>>m;
-    for(int i=0;i<n+1;++i)
-    {
-        gp[i].clear();
-        color[i]=0;
-    }
-    lli a,b;
-    fr(i,0,m)
-    {
-        cin>>a>>b;
-        gp[a].pb(b);
-    }
-    //fr(i,1,n+1){ sort(gp[i].rbegin(), gp[i].rend());}
-    top.clear();
-    iscyclic=false;
-    //bk(i,n,1){if(color[i]==0)dfs(i);}
-    fr(i,1,n+1)
-    {
-        if(color[i]==0)
-            dfs(i);
-    }
-    reverse(top.begin(), top.end());
-    if(!iscyclic)
-    {
-        show(top);
-    }
-    else
-        cout<<-1<<endl;
-    return 0;
-}
-
 ////// BFS approach to print topological sort according to lexiographical order--
 vector<int> gp[1000001];
 vector<lli>  top;
@@ -198,3 +140,63 @@ int main()
 }
 
 
+
+
+
+Dfs traversal for topological sort ---- (will print any one of the order)
+For printing lexiographically lower order uncomment two commented line and comment for loop for all dfs(https://stackoverflow.com/questions/27034954/topological-sort-with-smallest-available-vertex-first).
+
+int color[1000001];
+vector<int> gp[1000001];
+vector<int>  top;
+bool iscyclic=false;
+void dfs(int s)
+{
+    if(color[s]!=0)
+    {
+        if(color[s]==1)
+            iscyclic=true;
+        return;
+    }
+    color[s]=1;
+    for(int i:gp[s])
+    {
+        dfs(i);
+    }
+    color[s]=2;
+    top.push_back(s);
+}
+int main()
+{
+    run;cout<<fixed<<setprecision(12);
+    lli n,m,x;
+    cin>>n>>m;
+    for(int i=0;i<n+1;++i)
+    {
+        gp[i].clear();
+        color[i]=0;
+    }
+    lli a,b;
+    fr(i,0,m)
+    {
+        cin>>a>>b;
+        gp[a].pb(b);
+    }
+    //fr(i,1,n+1){ sort(gp[i].rbegin(), gp[i].rend());}
+    top.clear();
+    iscyclic=false;
+    //bk(i,n,1){if(color[i]==0)dfs(i);}
+    fr(i,1,n+1)
+    {
+        if(color[i]==0)
+            dfs(i);
+    }
+    reverse(top.begin(), top.end());
+    if(!iscyclic)
+    {
+        show(top);
+    }
+    else
+        cout<<-1<<endl;
+    return 0;
+}
