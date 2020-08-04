@@ -120,7 +120,13 @@ lli n,m,x,y;
 void bellman()
 {
     // set the vertices distances as infinity
-    mem(dist,2e9);
+    fr(i,1,n+1)
+    {
+        fr(j,1,n+1)
+        {
+            dist[i][j]=2e9;
+        }
+    }
     fr(i,1,n+1)
     {
         dist[i][i]=0;
