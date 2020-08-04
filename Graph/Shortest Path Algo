@@ -132,7 +132,7 @@ void bellman()
         dist[i][i]=0;
         for(auto j :gp[i])
         {
-            dist[i][j.Fs]=j.Sc;
+            dist[i][j.F]=j.S;
         }
     }
     for(int k = 1; k <= n; k++){
