@@ -16,15 +16,15 @@ void dijkstra(int src)
     {
         pair <int , int> p = *s.begin();        // pop the vertex with the minimum distance
         s.erase(s.begin());
-        int x = p.Sc;
-        int wei = p.Fs;
+        int x = p.S;
+        int wei = p.F;
         if( visited[x] )
             continue;                  // check if the popped vertex is visited before
         visited[x] = true;
         for(int i = 0; i < gp[x].size(); i++)
         {
-            int e = gp[x][i].Fs;
-            int w = gp[x][i].Sc;
+            int e = gp[x][i].F;
+            int w = gp[x][i].S;
             if(dist[x] + w < dist[e]  )
             {            // check if the next vertex distance could be minimized
                 dist[e] = dist[x] + w;
