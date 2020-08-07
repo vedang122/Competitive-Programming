@@ -1,0 +1,40 @@
+int lps[2000001];
+string util(string s)
+{
+    int n=s.length();
+    //debug1(s);
+    char tmp[2*n+1];
+    fr(i,0,2*n+1)
+    lps[i]=0;
+    tmp[n]=' ';
+    fr(i,0,n)
+    {
+        tmp[i]=s[i];
+        tmp[2*n-i]=s[i];
+    }
+    lli i=0,j=1;
+    lps[0]=0;
+    while(j<2*n+1)
+    {
+        if(tmp[i]==tmp[j])
+        {
+            i++;
+            lps[j]=i;
+            j++;
+        }
+        else
+        {
+            if(i!=0)
+            {
+                i=lps[i-1];
+            }
+            else
+            {
+                lps[j]=0;
+                j++;
+            }
+        }
+    }
+    int cnt1=lps[2*n];
+    return s.substr(0,cnt1);
+  }
