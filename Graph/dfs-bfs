@@ -26,11 +26,10 @@ bool visited[1000001];
 vector<int> gp[1000001];
 void dfs(int s)
 {
-    if(visited[s])
-        return;
     visited[s]=true;
     for(auto i:gp[s])
     {
+    	if(!visited[i])
         dfs(i);
     }
 }
