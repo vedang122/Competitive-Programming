@@ -100,3 +100,36 @@ int main()
     return 0;
 }
 
+/// DFS in a tree standard for DP
+bool visited[1000001];
+vector<int> gp[1000001];
+void dfs(int s,int p)
+{
+    visited[s]=true;
+    for(auto i:gp[s])
+    {
+    	if(i!=p)
+	{
+        	dfs(i);
+	}
+    }
+}
+int main()
+{
+    lli n,m,x;
+    cin>>n>>m;
+    for(int i=0;i<n+1;++i)
+        gp[i].clear();
+    lli a,b;
+    for(int i=0;i<n+1;++i)
+        visited[i]=false;
+    fr(i,0,m)
+    {
+        cin>>a>>b;
+        gp[a].pb(b);
+        gp[b].pb(a);
+    }
+    cin>>x;
+    dfs(x,-1);
+    return 0;
+}
