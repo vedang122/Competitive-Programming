@@ -12,7 +12,7 @@ void SieveOfEratosthenes()
     }
     isprime[0]=isprime[1]=false;
         
-    for (lli p=2; p*p<=Maxn; p++)
+    for (lli p=2; p*p<Maxn; p++)
     {
         // If prime[p] is not changed, then it is a prime
         if (isprime[p] == true)
