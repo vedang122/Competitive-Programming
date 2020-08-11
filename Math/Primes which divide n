@@ -1,11 +1,11 @@
 // Time Complexity - O(sqrt(n)*c + O(maxn)) Primes precalculated till maximum value 
-#define MAXN 1000000
-bool isprime[1000001];
+#define MAXN 1000001
+bool isprime[MAXN];
 vl prime;
 void SieveOfEratosthenes()
 {
     
-    fr(i,0,MAXN+1)
+    fr(i,0,MAXN)
     {
         isprime[i]=true;
     }
@@ -16,13 +16,13 @@ void SieveOfEratosthenes()
         // If prime[p] is not changed, then it is a prime
         if (isprime[p] == true)
         {
-            for (lli i=p*p; i<=MAXN; i += p)
+            for (lli i=p*p; i<MAXN; i += p)
                 isprime[i] = false;
         }
     }
     
     // return all prime numbers
-    for (lli p=2; p<=MAXN; p++)
+    for (lli p=2; p<MAXN; p++)
         if (isprime[p])
             prime.pb(p);
 }
