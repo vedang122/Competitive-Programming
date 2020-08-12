@@ -1,0 +1,10 @@
+x+y = x&y + (x|y) = (x^y) + 2*(x&y) (very imp property whenever sum of two number in bits there is a relation. )
+
+x|y = (x^y) + (x&y)
+
+If x1|x2|...xn = A 
+then A|xi=A (also A can't have msb position more than any of xi's)
+
+Note bitwise OR and & in general doesn't follow subproblem substructure, so dp is not possible.
+
+
