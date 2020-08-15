@@ -10,3 +10,21 @@ lli lcm(lli a, lli b)
 { 
     return (a*b)/gcd(a,b);   
 } 
+
+
+
+
+
+Theory - Extended Eucledian algorithm --- 
+
+Let a, b be two numbers g=gcd(a,b) and a*x and b*y are two multiples of a and b respectively such that a*x!=b*y (or a*x itself is not a mulitple of g=gcd(a,b)) then  minimum difference between min(a*x-b*y) over all mulitples is >=g.
+
+Or in other words 
+
+for k=0,g,2*g,3*g..
+solution of this equuation exists otherwise it's not. 
+
+a*x-b*y = k 
+
+For example -  solution for this quation exists always-
+(a/g)*x-(b/g)*y=1 
