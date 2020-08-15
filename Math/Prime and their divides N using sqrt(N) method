@@ -1,0 +1,25 @@
+    map<lli,lli> mp;
+    lli q=k;
+    int c=0;
+    while(q%2==0)
+    {
+        c++;
+        q/=2;
+    }
+    if(c)
+        mp[2]=c;
+    for(int i=3;i<=sqrt(q);i+=2)
+    {
+        c=0;
+        while(q%i==0)
+        {
+            q/=i;
+            c++;
+        }
+        if(c)
+        {
+            mp[i]=c;
+        }
+    }
+    if(q>2)
+        mp[q]=1;
