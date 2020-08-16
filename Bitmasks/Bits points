@@ -1,10 +1,23 @@
 x+y = x&y + (x|y) = (x^y) + 2*(x&y) (very imp property whenever sum of two number in bits there is a relation. )
 
 x|y = (x^y) + (x&y)
+-----
 
 If x1|x2|...xn = A 
 then A|xi=A (also A can't have msb position more than any of xi's)
 
+-----
+
 Note bitwise OR and & in general doesn't follow subproblem substructure, so dp is not possible.
 
+-----
+
+Important properties of xor -
+1^2=3; 2^3=1 ; 1^3=2; (cyclicity can be used)
+
+(1<<x)^(1<<y) = with bit set on xth and yth position 
+
+So (1)^(1<<2)^(1<<3)^(1<<4)^ .... (1<<x) will have all bit set till xth positon
+
+----
 
