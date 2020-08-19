@@ -53,3 +53,5 @@ Get the position of MSB in A:
 high = __builtin_clz(A);
 
 
+/// Note -- Whenever your are using bitmask dp , in which for current mask (state) you are adding (1<<k) in it always first iterate mask from bottom to top since bitmask is only increasing after evry transition. 
+
