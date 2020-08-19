@@ -1,0 +1,1 @@
+If there is 3D DP so there are chances that MLE can occur, to counter that let's suppose for i in dp[i][j][k] only 1 state ie. (i-1) is needed than we can make dp[2][N][N] instead and can declare first state as i%2.
