@@ -3,7 +3,6 @@
 
 vector < pair < int , int > > gp [100001];   // each vertex has all the connected vertices with the edges weights
 int dist [100001];
-bool visited [100001];
 lli n,m,x,y;
 
 void dijkstra(int src)
@@ -18,17 +17,15 @@ void dijkstra(int src)
         s.erase(s.begin());
         int x = p.S;
         int wei = p.F;
-        if( visited[x] )
-            continue;                  // check if the popped vertex is visited before
-        visited[x] = true;
         for(int i = 0; i < gp[x].size(); i++)
         {
             int e = gp[x][i].F;
             int w = gp[x][i].S;
             if(dist[x] + w < dist[e]  )
             {            // check if the next vertex distance could be minimized
+                s.erase({dist[e],e});
                 dist[e] = dist[x] + w;
-                s.insert({dist[e],  e} );           // insert the next vertex with the updated distance
+                s.insert({dist[e],  e});           // insert the next vertex with the updated distance
             }
         }
     }
