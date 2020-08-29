@@ -1,0 +1,54 @@
+// fl tells whether it's possible to color the graph
+
+
+int color[N];
+vector<int> gp[N];
+lli n,m,fl=1;
+void dfs(int s)
+{
+    for(auto i:gp[s])
+    {
+        if(color[i]!=-1)
+        {
+            if(color[i]==color[s])
+            {
+                fl=0;
+                return;
+            }
+        }
+        else
+        {
+            color[i]=(!color[s]);
+            dfs(i);
+        }
+    }
+}
+void solve()
+{
+    cin>>n>>m;
+    lli a,b;
+    for(int i=0;i<n+1;++i)
+    {
+        color[i]=-1;
+    }
+    fr(i,0,m)
+    {
+        cin>>a>>b;
+        gp[a].pb(b);
+        gp[b].pb(a);
+    }
+    fl=1;
+    for(int i=1;i<=n;++i)
+    {
+        if(color[i]==-1)
+        {
+            color[i]=0;
+            dfs(i);
+        }
+    }
+    if(!fl)
+    {
+        cout<<-1<<endl;
+        return;
+    }
+}
