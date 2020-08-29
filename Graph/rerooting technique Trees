@@ -1,0 +1,21 @@
+Let's try to change the root from the vertex 𝑣 to some adjacent to it vertex 𝑡𝑜. Which states of dynamic programming will change? Only 𝑑𝑝𝑣 and 𝑑𝑝𝑡𝑜. Firstly, we need to "remove" the child 𝑡𝑜 from the subtree of the vertex 𝑣: 𝑑𝑝𝑣=𝑑𝑝𝑣−𝑚𝑎𝑥(0,𝑑𝑝𝑡𝑜) (Basically remove occurence of dp[t0] from dp[v]). Then we need to "attach" the vertex 𝑣 and make it a child of the vertex 𝑡𝑜: 𝑑𝑝𝑡𝑜=𝑑𝑝𝑡𝑜+𝑚𝑎𝑥(0,𝑑𝑝𝑣) (Now add the impact of v on t0 as if it is the child of t0). Then we need to run this process recursively from 𝑡𝑜 (store the answer, reroot the tree and so on) and when it ends we need to "rollback" our changes. Now 𝑣 is the root again and we can try the next child of 𝑣 as the root.
+
+void dfs(int s,int p)
+{
+    ans[s] = dp[s]; /// storing values for every root.
+    for(int i:gp[s] )
+    {
+        //if(i==parent)continue
+        if(i!=p)
+        {
+            // Following two lines will first remove i as child from s and then add s as child of i.
+            dp[s] -= max(0, dp[i]);
+            dp[i] += max(0, dp[s]);
+            dfs(i, s);
+            // Following two lines will rollback the changes so that this proces can be repeated for other children.
+            dp[i] -= max(0, dp[s]);
+            dp[s] += max(0, dp[i]);
+        }
+    }
+    
+}
