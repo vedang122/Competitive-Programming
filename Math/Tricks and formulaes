@@ -1,1 +1,7 @@
 Note - For any composite number 𝑘, there exists a prime 𝑑 such that 𝑑≤√k and 𝑘 is divisible by 𝑑. 
+
+
+Mod tricks --
+
+if (a%b) < (b%a)
+-> a>b and b=b%a;
