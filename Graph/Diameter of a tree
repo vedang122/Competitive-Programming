@@ -1,0 +1,40 @@
+// Note this algorithm works only for tree, can't be apply to a random graph. The reason being graph can have a cycle in it while tree doesn't.
+
+vi gp[N];
+lli node,mx=-inf;
+void dfs(int s,int d,int p)
+{
+    if(d>mx)
+    {
+        mx=d;
+        node=s;
+    }
+    for(int i:gp[s])
+    {
+        if(i!=p)
+        {
+            dfs(i,d+1,s);
+        }
+    }
+}
+lli diameter(int n)
+{
+    mx=-inf;
+    dfs(1,0,-1);
+    mx=-inf;
+    dfs(node,0,-1);
+    return mx;
+}
+void solve()
+{
+    int n;
+    cin>>n;
+    int a,b;
+    fr(i,0,n-1)
+    {
+        cin>>a>>b;
+        gp[a].pb(b);
+        gp[b].pb(a);
+    }
+    cout<<diameter(n)<<endl;
+}
