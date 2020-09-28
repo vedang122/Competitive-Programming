@@ -1,3 +1,7 @@
+/*
+ Author: Vedang Karwa
+ Talent is overrated
+ */
 //#include <bits/stdc++.h>
 #include<iostream>
 #include <iosfwd>
@@ -26,8 +30,6 @@ using namespace std;
 #define endl "\n"
 #define mem(p,v) memset(p,v,sizeof(p))
 #define present(c,x)    ((c).find(x) != (c).end())
-#define run ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
-//#define ordered_set tree<lli, null_type,less<lli>, rb_tree_tag,tree_order_statistics_node_update>
 #define debug1(x) cout<<#x<<" "<<x<<endl;
 #define debug2(x,y) cout<<#x<<" "<<x<<" "<<#y<<" "<<y<<endl;
 #define debug3(x,y,z) cout<<#x<<" "<<x<<" "<<#y<<" "<<y<<" "<<#z<<" "<<z<<endl;
@@ -42,8 +44,8 @@ typedef vector<lli> vl;
 typedef pair<lli,lli> pl;
 inline lli max(lli a,lli b){ return a>b?a:b;}
 inline lli min(lli a,lli b){ return a<b?a:b;}
-const long long inf = 1e18+5;
-const lli MOD =1e9+7 ;
+const long long int inf = 1e18+5;
+const long long M =1e9+7 ;
 void show(vector<lli> v){fr(i,0,v.size())cout<<v[i]<<" ";cout<<endl;}
 void show(vector<int> v){fr(i,0,v.size())cout<<v[i]<<" ";cout<<endl;}
 void show(int a[], int arraysize){for (int i = 0; i < arraysize; ++i)cout << a[i] << " ";cout<<endl;}
@@ -51,18 +53,50 @@ void show(lli a[], lli arraysize){for (lli i = 0; i < arraysize; ++i)cout << a[i
 void show(bool a[], lli arraysize){for (lli i = 0; i < arraysize; ++i)cout << a[i] << " ";cout<<endl;}
 void show(set<int> s){for (auto it = s.begin(); it != s.end(); it++){cout << *it << " ";}cout<<endl;}
 void show(map<lli,lli> mp){for (auto it = mp.begin(); it != mp.end(); it++){cout << it->first << " "<<it->second<<endl;}cout<<endl;}
-lli modpow(lli x,lli n){lli res=1;while(n>0){if(n&1) res=((res%MOD)*(x%MOD))%MOD;x=((x%MOD)*(x%MOD))%MOD;n>>=1;}return res;}
-lli power(lli x, lli n){lli res=1;while(n>0){if(n&1) res=res*x;x=x*x;n>>=1;}return res;}
+lli modpow(lli x,lli n)
+{
+    lli res=1;
+    while(n>0)
+    {
+        if(n&1)
+            res=((res%M)*(x%M))%M;
+        x=((x%M)*(x%M))%M;
+        n>>=1;
+    }
+    return res;
+}
+lli power(lli x, lli n)
+{
+    lli res=1;
+    while(n>0)
+    {
+        if(n&1)
+            res=res*x;
+        x=x*x;
+        n>>=1;
+    }
+    return res;
+}
+lli ceil_divide(lli a,lli b)
+{
+    return  (a+b-1)/b;
+}
+int row[4]={-1,1,0,0};
+int col[4]={0,0,-1,1};
+/////// ------ Main code starts here ------ ////
+
 const int N =1e5+5;
-/////// ------ Main code starts here ------ /////
+
 void solve()
 {
     
 }
+
 int main()
 {
-    run;cout<<fixed<<setprecision(12);
-    int t;
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cout<<fixed<<setprecision(0);
+    int t=1;
     cin>>t;
     while(t){solve();t--;}
     return 0;
