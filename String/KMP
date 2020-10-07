@@ -1,22 +1,29 @@
-lli lps[1000001];
-vl ans;
+//Courtesy - GFG
+
+lli lps[1000001]; // lps is found for patter to search
+vl ans; // Containing all the indices of occurence
 void precompute(string p)
 {
-    lli i=0,j=1,cnt=0;
-    lps[0]=0;
+    lli len=0; /// length of previous longest prefix suffix
+    lli j=1;
+    lps[0]=0; //lps[0] will be 0 everytime
     while(j<p.length())
     {
-        if(p[i]==p[j])
+        if(p[len]==p[j])
         {
-            i++;
-            lps[j]=i;
+            len++;
+            lps[j]=len;
             j++;
         }
         else
         {
-            if(i!=0)
+            // This is tricky. Consider the example. 
+            // AAACAAAA and j = 7. The idea is similar 
+            // to search step.
+            if(len!=0)
             {
-                i=lps[i-1];
+                len=lps[len-1];
+                // Very similar to what we do for pattern search, also no need ti increment j here, since new len can match current j too, in next step.
             }
             else
             {
@@ -42,6 +49,7 @@ void KMP(string s,string p)
         }
         if(j==m)
         {
+            //Pattern found at index i-j; note we also update j by lps[j-1] for starting pattern search from there.
             ans.pb(i-j);
             j=lps[j-1];
         }
