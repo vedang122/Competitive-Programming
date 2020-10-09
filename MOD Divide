@@ -1,0 +1,42 @@
+lli gcdExtended(lli a, lli b, lli *x, lli *y) 
+{ 
+    // Base Case 
+    if (a == 0) 
+    { 
+        *x = 0, *y = 1; 
+        return b; 
+    } 
+  
+    lli x1, y1; // To store results of recursive call 
+    lli gcd = gcdExtended(b%a, a, &x1, &y1); 
+  
+    // Update x and y using results of recursive 
+    // call 
+    *x = y1 - (b/a) * x1; 
+    *y = x1; 
+  
+    return gcd; 
+} 
+//m=MOD
+lli modInverse(int b, lli m) 
+{ 
+    lli x, y; // used in extended GCD algorithm 
+    lli g = gcdExtended(b, m, &x, &y); 
+  
+    // Return -1 if b and m are not co-prime 
+    if (g != 1) 
+        return -1; 
+  
+    // m is added to handle negative x 
+    return (x%m + m) % m; 
+} 
+
+lli modDivide(int a, int b, int m) 
+{ 
+    a = a % m; 
+    lli inv = modInverse(b, m); 
+    if (inv == -1) 
+       return -1;
+    else
+       return (inv * a) % m; 
+} 
