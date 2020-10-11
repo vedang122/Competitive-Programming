@@ -1,5 +1,8 @@
 let's run dfs from the root and calculate for each vertex the first time we visited it (𝑡𝑖𝑛) and the last time we visited it (𝑡𝑜𝑢𝑡).
 
+int tin[N],tout[N];
+int T=0;
+
 void dfs(int v, int par = -1) {
     tin[v] = T++;
     for (auto to : g[v]) {
