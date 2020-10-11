@@ -1,0 +1,73 @@
+/// Using pre and post for every node 
+
+int pre[N],post[N];
+int T=0;
+
+void dfs(int v, int par = -1) {
+    pre[v] = T++;
+    for (auto to : g[v]) {
+        if (to == par) continue;
+        dfs(to, v);
+    }
+    post[v] = T++;
+}
+bool iscycle(int n)
+{
+    T=0;
+    dfs(1,-1);
+    int fl=0;
+    for(int i=1;i<=n;++i)
+    {
+        for(int j:gp[i])
+        {
+            if(pre[j]<pre[i]&&post[i]<post[j])
+            {
+                fl=1;
+                break;
+            }
+        }
+    }
+    return fl;
+}
+
+
+---------
+// Using coloring of graph.Using colors for  unvisited, on recursion stack and completed.
+const int N=1e5+5;
+
+bool visited[N];
+vector<int> gp[N];
+vector<int> color[N];
+int fl=0; //if graph has cycle
+dfs(int v, int p)
+{
+  color[v] = 1; // in recursion
+  for(int w : g[v]){
+    if(color[w] == 1){
+			fl=0;
+      // you found a cycle, it's easy to recover it now.
+    }
+    if(color[w] == 0) dfs(w, v); //color =0 means node is unvisited yet
+  }
+  color[v] = 2; // node already completed future cycle can't contain it.
+}
+int main()
+{
+    lli n,m,x;
+    cin>>n>>m;
+    for(int i=0;i<n+1;++i)
+        gp[i].clear();
+    lli a,b;
+    for(int i=0;i<n+1;++i)
+		{
+        visited[i]=false;
+				color[i]=0;
+		}
+    fr(i,0,m)
+    {
+        cin>>a>>b;
+        gp[a].pb(b);
+    }
+    dfs(s,-1);
+    return 0;
+}
