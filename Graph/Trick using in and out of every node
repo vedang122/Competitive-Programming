@@ -1,15 +1,15 @@
 let's run dfs from the root and calculate for each vertex the first time we visited it (𝑡𝑖𝑛) and the last time we visited it (𝑡𝑜𝑢𝑡).
 
-int tin[N],tout[N];
+int pre[N],post[N];
 int T=0;
 
 void dfs(int v, int par = -1) {
-    tin[v] = T++;
+    pre[v] = T++;
     for (auto to : g[v]) {
         if (to == par) continue;
         dfs(to, v);
     }
-    tout[v] = T++;
+    post[v] = T++;
 }
 
 Initially, 𝑇 equals zero. Now we have a beautiful structure giving us so much information about the tree. Consider all segments [𝑡𝑖𝑛𝑣;𝑡𝑜𝑢𝑡𝑣]. We can see that there is no pair of intersecting segments. The pair of segments [𝑡𝑖𝑛𝑣;𝑡𝑜𝑢𝑡𝑣] and [𝑡𝑖𝑛𝑢;𝑡𝑜𝑢𝑡𝑢] is either non-intersecting at all or one segment lies inside the other one. The second beautiful fact is that for each vertex 𝑢 in the subtree of 𝑣 the segment [𝑡𝑖𝑛𝑢;𝑡𝑜𝑢𝑡𝑢] lies inside the segment [𝑡𝑖𝑛𝑣;𝑡𝑜𝑢𝑡𝑣]. So, we can check if one vertex is the parent of the other: the vertex 𝑣 is the parent of the vertex 𝑢 if and only if 𝑡𝑖𝑛𝑣≤𝑡𝑖𝑛𝑢 and 𝑡𝑜𝑢𝑡𝑢≤𝑡𝑜𝑢𝑡𝑣(vertex parent of itself too). 
