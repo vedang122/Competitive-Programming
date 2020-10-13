@@ -200,3 +200,23 @@ int main()
         cout<<-1<<endl;
     return 0;
 }
+
+// DFS approach using pre and post number for finding topological order. main fuction will be same as above for lexiographical printing or not.
+const int N=1e5+5;
+
+int pre[N];
+int post[N];
+vector<int> gp[N];
+vector<int>  top; //topological order
+bool iscyclic=false;
+int T=1;
+void dfs(int s)
+{
+    pre[s]=T++;
+    for(int i:gp[s])
+    {
+        dfs(i);
+    }
+    post[s]=T++;
+    top.push_back(s);
+}
