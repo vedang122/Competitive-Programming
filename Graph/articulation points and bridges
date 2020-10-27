@@ -1,0 +1,88 @@
+const int N =1e5+5;
+//For any edge,u-v , (u having discovery time less than v), if the earliest discovered vertex that can be visited from any vertex in the subtree rooted at vertex v has discovery time strictly greater than that of u, then  is a Bridge otherwise not.
+vector<int> gp[N];
+bool visited[N];
+int parent[N];
+bool ap[N]; // true if ith vertex is articulation point
+int desc[N]; //When we first discover a vertex
+int low[N]; // lowest desc[u] ith vertex is connected with
+int t=0;
+set<pi> bridge;
+void dfs(int s,int p)
+{
+    visited[s]=1;
+    parent[s]=p;
+    desc[s]=low[s]=(t++);
+    int child=0;//# of child subtree
+    for(int i:gp[s])
+    {
+        if(!visited[i])
+        {
+            child++;
+            dfs(i,s);
+            low[s]=min(low[s],low[i]); /// If there is a backedge from a child i then there is also one from s.
+            if(parent[s]!=-1&&low[i]>=desc[s]) //It's not root and low[i]>=desc[s] means there is no backedge.
+            {
+                ap[s]=1;
+            }
+            if(parent[s]==-1&&child>1)
+            {
+                ap[s]=1;
+            }
+        }
+        else if(i!=parent[s])
+        {
+            low[s]=min(low[s],desc[i]);
+        }
+        
+    }
+}
+void solve()
+{
+    lli n,m;
+    cin>>n>>m;
+    for(int i=0;i<n;++i)
+    {
+        visited[i]=ap[i]=0;
+        gp[i].clear();
+        low[i]=0;
+    }
+    for(int i=0;i<m;++i)
+    {
+        int a,b;
+        cin>>a>>b;
+        gp[a].push_back(b);
+        gp[b].push_back(a);
+    }
+    dfs(0,-1);
+    int cnt=0;
+    for(int i=0;i<n;++i)
+    {
+        cnt+=ap[i];
+    }
+    cout<<cnt<<endl;
+    for(int i=0;i<n;++i)
+    {
+        if(ap[i])
+            cout<<i<<" ";
+    }
+    cout<<endl;
+    for(int i=0;i<n;++i)
+    {
+        for(int j:gp[i])
+        {
+            if(low[j]>desc[i])
+            {
+                if(bridge.find({min(j,i),max(j,i)})==bridge.end())
+                {
+                    bridge.insert({min(j,i),max(j,i)});
+                }
+            }
+        }
+    }
+    cout<<bridge.size()<<endl;
+    for(auto i:bridge)
+    {
+        cout<<i.first<<" "<<i.second<<endl;
+    }
+}
