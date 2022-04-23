@@ -1,0 +1,65 @@
+/*
+Do a DFS on the original graph, keeping track of the finish times of each node. This can be done with a stack, when some  finishes put the source vertex on the stack. This way node with highest finishing time will be on top of the stack.
+Reverse the original graph, 
+Do DFS on the reversed graph, with the source vertex as the vertex on top of the stack. When  finishes, all nodes visited will form one Strongly Connected Component. If any more nodes remain unvisited, this means there are more Strongly Connected Component's, so pop vertices from top of the stack until a valid unvisited node is found. This will have the highest finishing time of all currently unvisited nodes.
+*/
+vector<int> gp[N];
+vector<int> gpr[N];
+vector<bool> visited(N,false);
+vector<int> scc(N,-1);
+stack<int> s;
+void dfs(int src)
+{
+	visited[src] = 1;
+	for(int u: gp[src])
+	{
+		if(!visited[u])
+		{
+			dfs(u);
+		}
+	}
+	s.push(src);
+}
+void dfsSCC(int src, int node)
+{
+	visited[src] = 1;
+	scc[src] = node;
+	for(int u: gpr[src])
+	{
+		if(!visited[u])
+		{
+			dfsSCC(u,node);
+		}
+	}
+}
+void solve()
+{
+	int n,m;
+	cin>>n>>m;
+	for(int i=0;i<m;++i)
+	{
+		int a,b;
+		cin>>a>>b;
+		a--;b--;
+		gp[a].push_back(b);
+		gpr[b].push_back(a);
+	}
+	for(int i=0;i<n;++i)
+		visited[i] = 0;
+    for(int i=0;i<n;++i)
+        if(!visited[i])
+	        dfs(i);
+	int node = 0;
+	for(int i=0;i<n;++i)
+		visited[i] = 0;
+	while(!s.empty())
+	{
+		if(!visited[s.top()])
+		{
+			dfsSCC(s.top(),node);
+			node++;
+		}
+		s.pop();
+	}
+    //Now scc array have mapping nodes from original graph to scc graph nodes
+}
