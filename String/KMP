@@ -1,5 +1,16 @@
-//Courtesy - GFG
-
+//Courtesy - https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
+/*
+In the preprocessing part, we calculate values in lps[]. To do that, we keep track of the length of the longest prefix suffix value
+(we use len variable for this purpose) for the previous index. We initialize lps[0] and len as 0. If pat[len] and pat[i] match, we increment len by 1 and 
+assign the incremented value to lps[i]. If pat[i] and pat[len] do not match and len is not 0, we update len to lps[len-1].
+Searching pattern algo - 
+We start comparison of pat[j] with j = 0 with characters of current window of text.
+We keep matching characters txt[i] and pat[j] and keep incrementing i and j while pat[j] and txt[i] keep matching.
+When we see a mismatch We know that characters pat[0..j-1] match with txt[i-j…i-1] (Note that j starts with 0 and increment it only when there is a match).
+We also know (from above definition) that lps[j-1] is count of characters of pat[0…j-1] that are both proper prefix and suffix.
+From above two points, we can conclude that we do not need to match these lps[j-1] characters with txt[i-j…i-1] because we know that these 
+characters will anyway match. Let us consider above example to understand this.
+*/
 lli lps[1000001]; // lps is found for patter to search
 vl ans; // Containing all the indices of occurence
 void precompute(string p)
