@@ -1,0 +1,74 @@
+
+class File {
+    public:
+    string name;
+    int size;
+    int type;
+    bool isDirectory;
+    vector<File*> children;
+};
+
+class Filter {
+    public:
+    virtual bool apply(File* file) = 0;
+};
+
+class MinSizeFilter : public Filter {
+
+    int minSize;
+    public:
+    MinSizeFilter(int minSize) {
+        this->minSize = minSize;
+    }
+
+    bool apply(File* file) {
+        return file->size > minSize;
+    }
+};
+
+class TypeFilter : public Filter {
+
+    int type;
+    public:
+    TypeFilter(int type) {
+        this->type = type;
+    }
+
+    bool apply(File* file) {
+        return file->type == type;
+    }
+};
+
+class FindCommand {
+
+    public:
+    vector<File*> findWithFilters(File* directory, vector<Filter*> filters) {
+        if (!directory->isDirectory) {
+            return new NotADirectoryException();
+        }
+        vector<File*> output = {};
+        findWithFilters(directory, filters, output);
+        return output;
+    }
+
+    void findWithFilters(File* directory, vector<Filter*> filters, vector<File*>& output) {
+        if (directory->children == NULL) {
+            return;
+        }
+        for (File* file : (directory->children)) {
+            if (file->isDirectory) {
+                findWithFilters(file, filters, output);
+            } else {
+                bool selectFile = true;
+                for (Filter* filter : filters) {
+                    if (!filter->apply(file)) {
+                        selectFile = false;
+                    }
+                }
+                if (selectFile) {
+                    output.push_back(file);
+                }
+            }
+        }
+    }
+}
