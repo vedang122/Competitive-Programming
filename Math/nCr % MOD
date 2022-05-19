@@ -2,6 +2,18 @@
 
 const int N=1e6+1;
 lli fac[N];
+lli modpow(lli x,lli n)
+{
+    lli res=1;
+    while(n>0)
+    {
+        if(n&1)
+            res=((res%M)*(x%M))%M;
+        x=((x%M)*(x%M))%M;
+        n>>=1;
+    }
+    return res;
+}
 void factorial()
 {
     fac[0] = 1;
