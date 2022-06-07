@@ -1,7 +1,11 @@
 /*
-Do a DFS on the original graph, keeping track of the finish times of each node. This can be done with a stack, when some  finishes put the source vertex on the stack. This way node with highest finishing time will be on top of the stack.
+Do a DFS on the original graph, keeping track of the finish times of each node. This can be done with a stack, when some  finishes put the source vertex on the stack.
+This way node with highest finishing time will be on top of the stack.
 Reverse the original graph, 
-Do DFS on the reversed graph, with the source vertex as the vertex on top of the stack. When  finishes, all nodes visited will form one Strongly Connected Component. If any more nodes remain unvisited, this means there are more Strongly Connected Component's, so pop vertices from top of the stack until a valid unvisited node is found. This will have the highest finishing time of all currently unvisited nodes.
+Do DFS on the reversed graph, with the source vertex as the vertex on top of the stack. 
+When  finishes, all nodes visited will form one Strongly Connected Component. 
+If any more nodes remain unvisited, this means there are more Strongly Connected Component's, so pop vertices from top of the stack until a valid 
+unvisited node is found. This will have the highest finishing time of all currently unvisited nodes.
 */
 vector<int> gp[N];
 vector<int> gpr[N];
